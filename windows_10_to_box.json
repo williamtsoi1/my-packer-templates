@@ -1,38 +1,6 @@
 {
   "builders": [
     {
-      "type": "vmware-iso",
-      "communicator": "winrm",
-      "iso_url": "{{user `iso_url`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_checksum": "{{user `iso_checksum`}}",
-      "headless": false,
-      "boot_wait": "2m",
-      "winrm_username": "vagrant",
-      "winrm_password": "vagrant",
-      "winrm_timeout": "2h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "guest_os_type": "windows8srv-64",
-      "disk_size": 61440,
-      "vnc_port_min": 5900,
-      "vnc_port_max": 5980,
-      "floppy_files": [
-        "{{user `autounattend`}}",
-        "./scripts/fixnetwork.ps1",
-        "./scripts/disable-winrm.ps1",
-        "./scripts/enable-winrm.ps1",
-        "./scripts/microsoft-updates.bat",
-        "./scripts/win-updates.ps1"
-      ],
-      "vmx_data": {
-        "RemoteDisplay.vnc.enabled": "false",
-        "RemoteDisplay.vnc.port": "5900",
-        "memsize": "2048",
-        "numvcpus": "2",
-        "scsi0.virtualDev": "lsisas1068"
-      }
-    },
-    {
       "type": "virtualbox-iso",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
